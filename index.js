@@ -22,10 +22,12 @@ function forkRepo() {
       }
     }
   )
-  .then(res => console.log(res))
+  .then(response => response.json())
+  .then(json => showResults(json))
 }
 
 function showResults(json) {
+  debugger
   //use this function to display the results from forking via the API
 }
 
