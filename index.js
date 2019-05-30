@@ -1,4 +1,3 @@
-const token = '7be369911bd4e093b1aa9ce86436e179502b3b9c';
 const githubAPI = 'https://api.github.com'
 
 function getToken() {
@@ -9,7 +8,9 @@ function getToken() {
 }
 
 function forkRepo() {
-  const repo = 'learn-co-curriculum/js-ajax-fetch-lab'
+  // const repo = 'learn-co-curriculum/js-ajax-fetch-lab'
+  debugger
+  const repo = 'octocat/Spoon-Knife'
   const postData = ''
   //use fetch to fork it!
   fetch(`${githubAPI}/repos/${repo}/forks`,
@@ -17,10 +18,11 @@ function forkRepo() {
       method: 'POST',
       body: JSON.stringify(postData),
       headers: {
-        Authorization: ""
+        Authorization: `token ${token}`
       }
     }
   )
+  .then(res => console.log(res))
 }
 
 function showResults(json) {
