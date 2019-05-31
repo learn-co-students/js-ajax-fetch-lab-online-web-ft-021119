@@ -54,6 +54,7 @@ function createIssue() {
 }
 
 function getIssues() {
-  fetch()
+  const owner = "BebopVinh"
+  fetch(`${githubAPI}/repos/${owner}/${repo}/issues`)
   //once an issue is submitted, fetch all open issues to see the issues you are creating
 }
