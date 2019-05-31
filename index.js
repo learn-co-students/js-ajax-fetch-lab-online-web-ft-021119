@@ -37,12 +37,12 @@ function createIssue() {
   //use this function to create an issue based on the values input in index.html
   const issueTitle = document.querySelector('input#title')
   const issueText = document.querySelector('input#body')
-  // POST /repos/:owner/:repo/issues
   
   fetch(`${githubAPI}/repos/${repo}/issues`,
     {
       method: 'POST',
-      body: JSON.stringify(postData),
+      title: JSON.stringify(issueTitle),
+      body: JSON.stringify(issueText),
       headers: {
         Authorization: `token ${getToken()}`
       }
