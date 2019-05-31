@@ -18,7 +18,9 @@ function forkRepo() {
 }
 
 function showResults(json) {
- document.getElementById('results').innerHTML = json.html_url;
+  document.getElementById('results').innerHTML = `<a href=${json.html_url}>${
+    json.html_url
+  }</a>`;
 }
 
 function createIssue() {
@@ -26,28 +28,30 @@ function createIssue() {
  const title = document.getElementById('title').value
  const body = document.getElementById('body').value
  const postData = {title: title, body : body};
+ const user = 'lchan217'
  
- const repo = 'lchan217/js-ajax-fetch-lab';
+ const repo = 'js-ajax-fetch-lab';
 
- fetch(`/api.github.com/repos/${repo}/issues`,{
+ fetch(`/api.github.com/repos/${user}/${repo}/issues`,{
   	method: 'POST',
   	  body: JSON.stringify(postData),
   	  headers: {
   			Authorization: `token ${getToken()}`
   		}
     }).then(res => res.json())
-	  .then(json => showResults(json));
+	  .then(json => getIssues(json));
 }
 
 function getIssues() {
   //once an issue is submitted, fetch all open issues to see the issues you are creating
   //GET /repos/:owner/:repo/issues
-  const repo = 'lchan217/js-ajax-fetch-lab';
+  const repo = 'js-ajax-fetch-lab';
+  const user = 'lchan217'
   
-  fetch(`/api.github.com/repos/${repo}/issues`,{
+  fetch(`/api.github.com/repos/${user}/${repo}/issues`,{
   		headers: {
   			Authorization: `token ${getToken()}`
   		}
     }).then(res => res.json())
-	  .then(json => showResults(json));
+	 .then(json => console.log(json));
 }
