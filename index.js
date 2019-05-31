@@ -1,7 +1,5 @@
 const githubAPI = 'https://api.github.com'
-// const repo = 'BebopVinh/codewars-nato'
-const repo = 'learn-co-curriculum/js-ajax-fetch-lab'
-
+const repo = 'js-ajax-fetch-lab'
 
 
 function getToken() {
@@ -9,23 +7,25 @@ function getToken() {
   //back to '' before committing so all tests pass
   // return token
   return ''
-  // return 'a76bfee4b0dbee7dcacdfc7074f47411e5fbd68e'
 }
 
 function forkRepo() {
   const postData = ''
   //use fetch to fork it!
-  fetch(`${githubAPI}/repos/${repo}/forks`,
+  const owner = 'learn-co-curriculum'
+  fetch(`${githubAPI}/repos/${owner}/${repo}/forks`,
     {
       method: 'POST',
-      body: JSON.stringify(postData),
       headers: {
         Authorization: `token ${getToken()}`
       }
     }
   )
   .then(response => response.json())
-  .then(json => showResults(json))
+  .then(json => {
+    console.log(json)
+    debugger
+    showResults(json)})
 }
 
 function showResults(json) {
@@ -37,12 +37,12 @@ function createIssue() {
   //use this function to create an issue based on the values input in index.html
   const issueTitle = document.querySelector('input#title')
   const issueText = document.querySelector('input#body')
-  
-  fetch(`${githubAPI}/repos/${repo}/issues`,
+  const owner = "BebopVinh"
+  fetch(`${githubAPI}/repos/${owner}/${repo}/issues`,
     {
       method: 'POST',
-      title: JSON.stringify(issueTitle),
-      body: JSON.stringify(issueText),
+      title: issueTitle,
+      body: issueText,
       headers: {
         Authorization: `token ${getToken()}`
       }
@@ -54,6 +54,6 @@ function createIssue() {
 }
 
 function getIssues() {
-  debugger
+  fetch()
   //once an issue is submitted, fetch all open issues to see the issues you are creating
 }
